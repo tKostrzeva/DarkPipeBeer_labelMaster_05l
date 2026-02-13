@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Dark Pipe Label Master</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap');
+  </style>
+</head>
+
+<body>
+
+  <div id="flasaInfo" class="flasaInfo">
+    0.50 L
+  </div>
+
+
+  <div id="appInfo" class="brandName">
+    Dark Pipe Beer
+  </div>
+
+  <div id="appInfo" class="appName">
+    Label Master
+  </div>
+
+  <div id="appInfo" class="appVer">
+    v.01
+  </div>
+
+  <div class="inputGroup">
+    <textArea rows="1" type="text" id="nazovPiva" placeholder="Názov piva"></textArea>
+    <br><br>
+
+    <textArea rows="1" type="text" id="typPiva" placeholder="Typ piva"></textArea>
+    <br><br>
+
+    <textArea rows="1" type="text" id="percento" placeholder="5.0 %"></textArea>
+  </div>
+
+  <div class="sliderGroup">
+    <label>Color A</label>
+    <input type="range" id="hueSliderA" class="sliders" max="360" value="0" step="10" style="--h:0"
+      oninput="this.style.setProperty('--h', this.value)">
+    <br>
+    <br>
+
+    <label>Color B</label>
+    <input type="range" id="hueSliderB" class="sliders" min="0" max="360" value="0" step="10" style="--h:0"
+      oninput="this.style.setProperty('--h', this.value)">
+
+    <br>
+    <br>
+    <button id="exportPdfBtn" type="button">Export PDF</button>
+  </div>
+
+  <div id="sketch-wrapper"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <!-- PDF export (jsPDF) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="sketch.js"></script>
+</body>
+
+</html>

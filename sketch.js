@@ -83,9 +83,6 @@ function setup() {
 function draw() {
   clear();
 
-  let buffer = label.get();
-  buffer.resize(CANVAS_W, CANVAS_H);
-  buffer.mask(shape);
 
   // ---------- ASCII MODUL ----------
   const nameInput = document.getElementById("nazovPiva");
@@ -279,13 +276,22 @@ function draw() {
   label.rect(0, 0, 400, 330);
   label.pop();
 
-  // DESIGN PREVIEW
-  push();
-  imageMode(CENTER);
-  translate(CANVAS_W / 2, CANVAS_H / 2);
-  scale(0.80);
-  image(buffer, 0, 0);
-  pop();
+// DESIGN PREVIEW (bez scale(), mask až po dokreslení labelu)
+let buffer = label.get();
+buffer.mask(shape);
+
+push();
+imageMode(CENTER);
+
+// dôležité: zjednoť resampling medzi browsermi
+drawingContext.imageSmoothingEnabled = true;
+drawingContext.imageSmoothingQuality = 'high';
+
+// ak chceš úplne tvrdú konzistenciu (ostré hrany), daj:
+// drawingContext.imageSmoothingEnabled = false;
+
+image(buffer, width / 2, height / 2);
+pop();
 }
 
 function exportPDF() {

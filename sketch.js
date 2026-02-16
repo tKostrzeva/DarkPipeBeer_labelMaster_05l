@@ -197,9 +197,15 @@ function draw() {
   label.tint(COLOR_C);
   label.imageMode(CENTER);
   label.translate(label.width / 2, 180);
-  label.scale(0.49);
-  label.image(logo, 0, 16); // 2x upscaled logo
+
+const LOGO_W = 170;                 // upravíš 1 číslom
+const LOGO_H = LOGO_W * (logo.height / logo.width);
+
+label.image(logo, label.width / 2, 196, LOGO_W, LOGO_H);
+  
   label.pop();
+
+  
 
   // NÁZOV PIVA
   label.push();

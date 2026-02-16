@@ -67,10 +67,8 @@ body {
 }
 
 #sketch-wrapper {
-  display: block;
-  top: 50%;
-  transform: translateY(-50%);
-  transform: scale(95%);
+display: block;
+  transform: none; 
 }
 
 textarea {

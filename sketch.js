@@ -60,6 +60,7 @@ function setup() {
   c.parent('sketch-wrapper');
 
   colorMode(HSB, 360, 100, 100);
+  pixelDensity(1);
 
   noStroke();
   imageMode(CENTER);

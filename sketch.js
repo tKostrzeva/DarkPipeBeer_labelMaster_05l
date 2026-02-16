@@ -285,7 +285,7 @@ imageMode(CENTER);
 drawingContext.imageSmoothingEnabled = true;
 drawingContext.imageSmoothingQuality = 'high';
 
-scale(0.8);  
+//scale(0.8);  
 image(buffer, width / 2, height / 2);
 pop();
 }

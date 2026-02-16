@@ -51,7 +51,7 @@ function preload() {
   FONT_A = loadFont("assets/TT Octosquares Trial Expanded Black.ttf");
   FONT_B = loadFont("assets/TT Octosquares Trial Medium.ttf");
 
-  logo = loadImage("assets/DarkPipe_logo_app_x2.svg");
+  logo = loadImage("assets/DarkPipe_logo_app_x2.png");
   shape = loadImage("DarkPipe_etiketa_shape_768x1122.png");
 }
 

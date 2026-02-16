@@ -201,7 +201,7 @@ function draw() {
   label.drawingContext.imageSmoothingEnabled = true;
 label.drawingContext.imageSmoothingQuality = 'high';
   
-const LOGO_W = 200;                
+const LOGO_W = 190;                
 const LOGO_H = LOGO_W * (logo.height / logo.width);
 
 label.image(logo, 0, 0, LOGO_W, LOGO_H);

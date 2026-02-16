@@ -282,7 +282,7 @@ buffer.mask(shape);
 push();
 imageMode(CENTER);
 
-drawingContext.imageSmoothingEnabled = false;
+drawingContext.imageSmoothingEnabled = true;
 drawingContext.imageSmoothingQuality = 'high';
 
 scale(0.8);  

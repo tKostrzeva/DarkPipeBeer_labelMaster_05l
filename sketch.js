@@ -52,7 +52,7 @@ function preload() {
   FONT_B = loadFont("assets/TT Octosquares Trial Medium.ttf");
 
   logo = loadImage("assets/DarkPipe_logo_app_x2.svg");
-  shape = loadImage("DarkPipe_etiketa_shape.svg");
+  shape = loadImage("DarkPipe_etiketa_shape_768x1122.png");
 }
 
 function setup() {
@@ -75,7 +75,7 @@ function setup() {
   tileW = label.width / TILES_X;
   tileH = label.height / TILES_Y;
 
-  shape.resize(CANVAS_W, CANVAS_H);
+  // shape.resize(CANVAS_W, CANVAS_H);
 
   document.getElementById("exportPdfBtn")?.addEventListener("click", exportPDF);
 }
@@ -276,20 +276,16 @@ function draw() {
   label.rect(0, 0, 400, 330);
   label.pop();
 
-// DESIGN PREVIEW (bez scale(), mask až po dokreslení labelu)
 let buffer = label.get();
 buffer.mask(shape);
 
 push();
 imageMode(CENTER);
 
-// dôležité: zjednoť resampling medzi browsermi
-drawingContext.imageSmoothingEnabled = true;
+drawingContext.imageSmoothingEnabled = false;
 drawingContext.imageSmoothingQuality = 'high';
 
-// ak chceš úplne tvrdú konzistenciu (ostré hrany), daj:
-// drawingContext.imageSmoothingEnabled = false;
-
+scale(0.8);  
 image(buffer, width / 2, height / 2);
 pop();
 }

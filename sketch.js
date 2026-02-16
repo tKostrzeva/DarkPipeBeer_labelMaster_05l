@@ -198,10 +198,10 @@ function draw() {
   label.imageMode(CENTER);
   label.translate(label.width / 2, 180);
 
-  drawingContext.imageSmoothingEnabled = true;
-drawingContext.imageSmoothingQuality = 'high';
+  label.drawingContext.imageSmoothingEnabled = true;
+label.drawingContext.imageSmoothingQuality = 'high';
   
-const LOGO_W = 170;                 // upravíš 1 číslom
+const LOGO_W = 180;                 // upravíš 1 číslom
 const LOGO_H = LOGO_W * (logo.height / logo.width);
 
 label.image(logo, 0, 0, LOGO_W, LOGO_H);

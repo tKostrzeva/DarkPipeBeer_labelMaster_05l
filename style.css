@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap');
+
 :root {
   --hue-gradient: linear-gradient(to right,
       #ff0000 0%,
@@ -13,10 +15,11 @@
   --ui-border: 1px;
 
   --thumb-size: 18px;
-  --thumb-radius: 5px;
+  --thumb-radius: 24px;
   --thumb-border: 2px;
 
   --ui-margin: 50px;
+  --ui-spacing: 24px;
 }
 
 * {
@@ -34,7 +37,9 @@ body {
   min-height: 100vh;
   padding: 24px;
   font-family: "Geist Mono", monospace;
-    font-weight: 400;
+  font-weight: 400;
+  overflow: hidden;
+
 }
 
 #flasaInfo {
@@ -47,7 +52,7 @@ body {
 
 #appInfo {
   display: block;
-  position: absolute;
+  position: fixed;
   bottom: 40px;
   color: var(--info-color);
   font-size: 12px;
@@ -67,10 +72,22 @@ body {
 }
 
 #sketch-wrapper {
-  display: block;
+  position: fixed;
+  left: 50%;
   top: 50%;
-  transform: translateY(-50%);
-  transform: scale(80%);
+  transform: translate(-50%, -50%) scale(0.3);
+  transform-origin: center center;
+  display: block;
+}
+
+#sketch-wrapper canvas {
+  display: block;
+}
+
+@media (min-height: 500px) {
+  #sketch-wrapper {
+  transform: translate(-50%, -50%) scale(0.5);
+  }
 }
 
 textarea {
@@ -80,7 +97,7 @@ textarea {
   color: var(--ui-color);
   height: 30px;
   border: var(--ui-border) solid var(--ui-color);
-  border-radius: 30px;
+  border-radius: var(--thumb-radius);
   padding-left: 15px;
   padding-top: 6px;
   margin-top: 15px;
@@ -119,6 +136,11 @@ label {
 .inputGroup {
   left: 50px;
   width: 200px;
+}
+
+#nazovPiva,
+#typPiva {
+  margin-bottom: var(--ui-spacing);
 }
 
 .sliderGroup {
@@ -187,4 +209,4 @@ label {
   font-size: 11px;
   cursor: pointer;
   padding-bottom: 2px;
-  }
+}

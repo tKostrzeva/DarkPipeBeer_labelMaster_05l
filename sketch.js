@@ -53,7 +53,7 @@ function preload() {
   FONT_A = loadFont("assets/TT Octosquares Trial Expanded Black.ttf");
   FONT_B = loadFont("assets/TT Octosquares Trial Medium.ttf");
 
-  logo = loadImage("assets/DarkPipe_logo_app_x2.svg");
+  logo = loadImage("assets/DarkPipe_logo_app_x2.png");
   shape = loadImage("DarkPipe_etiketa_shape.svg");
 }
 
@@ -82,10 +82,7 @@ function setup() {
 
 function draw() {
   clear();
-
-  let buffer = label.get();
-  buffer.mask(shape);
-
+  
   // ---------- ASCII MODUL ----------
   const nameInput = document.getElementById("nazovPiva");
   let beerName = nameInput.value || nameInput.placeholder;
@@ -180,13 +177,6 @@ function draw() {
            splitCol = lerpColor(COLOR_A, COLOR_B, sSplit);
 
           label.fill(splitCol);
-
-          /* label.rect(
-            px + i * subTileW - tileW / 2 + subTileW / 2,
-            py,
-            subTileW + 1,
-            tileH + 1
-          ); */
           label.rect(
             px,
             py + i * subTileH - tileH / 2 + subTileH / 2,
@@ -208,8 +198,15 @@ function draw() {
   label.tint(COLOR_C);
   label.imageMode(CENTER);
   label.translate(label.width / 2, 180);
-  label.scale(0.49);
-  label.image(logo, 0, 16); // 2x upscaled logo
+
+  label.drawingContext.imageSmoothingEnabled = true;
+  label.drawingContext.imageSmoothingQuality = 'high';
+
+  const LOGO_W = 190;
+  const LOGO_H = LOGO_W * (logo.height / logo.width);
+
+  label.image(logo, 0, 0, LOGO_W, LOGO_H);
+
   label.pop();
 
   // NÁZOV PIVA
@@ -287,12 +284,18 @@ function draw() {
   label.rect(0, 0, 400, 330);
   label.pop();
 
+  let buffer = label.get();
+  buffer.mask(shape);
+
   // DESIGN PREVIEW
   push();
   imageMode(CENTER);
-  translate(CANVAS_W / 2, CANVAS_H / 2);
-  scale(0.80);
-  image(buffer, 0, 0);
+
+  drawingContext.imageSmoothingEnabled = true;
+  drawingContext.imageSmoothingQuality = 'high';
+
+  //scale(0.8);  
+  image(buffer, width / 2, height / 2);
   pop();
 }
 

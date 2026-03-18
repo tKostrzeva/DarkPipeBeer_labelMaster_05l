@@ -45,8 +45,6 @@ let nameSize;
 let typeSize;
 let infoSize;
 
-let refImg;
-
 let SPLIT_COUNT = 4;
 
 let splitCol;
@@ -57,7 +55,6 @@ function preload() {
 
   logo = loadImage("assets/DarkPipe_logo_app_x2.svg");
   shape = loadImage("DarkPipe_etiketa_shape.svg");
-  refImg = loadImage("assets/03etiketa.png");
 }
 
 function setup() {

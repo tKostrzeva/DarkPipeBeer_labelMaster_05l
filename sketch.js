@@ -62,6 +62,7 @@ function setup() {
   c.parent('sketch-wrapper');
 
   colorMode(HSB, 360, 100, 100);
+  pixelDensity(1);
 
   noStroke();
   imageMode(CENTER);
@@ -76,8 +77,6 @@ function setup() {
   tileW = label.width / TILES_X;
   tileH = label.height / TILES_Y;
 
-  shape.resize(CANVAS_W, CANVAS_H);
-
   document.getElementById("exportPdfBtn")?.addEventListener("click", exportPDF);
 }
 
@@ -85,7 +84,6 @@ function draw() {
   clear();
 
   let buffer = label.get();
-  buffer.resize(CANVAS_W, CANVAS_H);
   buffer.mask(shape);
 
   // ---------- ASCII MODUL ----------

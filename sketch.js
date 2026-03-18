@@ -36,7 +36,7 @@ let v, idx;
 let n, b, s, mixHue;
 
 let TILES_X = 3;
-let TILES_Y = 25;
+let TILES_Y = 15;
 
 let tileW, tileH;
 let tileMargin;
@@ -45,14 +45,19 @@ let nameSize;
 let typeSize;
 let infoSize;
 
+let refImg;
+
 let SPLIT_COUNT = 4;
+
+let splitCol;
 
 function preload() {
   FONT_A = loadFont("assets/TT Octosquares Trial Expanded Black.ttf");
   FONT_B = loadFont("assets/TT Octosquares Trial Medium.ttf");
 
-  logo = loadImage("assets/DarkPipe_logo_app_x2.png");
-  shape = loadImage("DarkPipe_etiketa_shape_768x1122.png");
+  logo = loadImage("assets/DarkPipe_logo_app_x2.svg");
+  shape = loadImage("DarkPipe_etiketa_shape.svg");
+  refImg = loadImage("assets/03etiketa.png");
 }
 
 function setup() {
@@ -60,7 +65,6 @@ function setup() {
   c.parent('sketch-wrapper');
 
   colorMode(HSB, 360, 100, 100);
-  pixelDensity(1);
 
   noStroke();
   imageMode(CENTER);
@@ -75,7 +79,7 @@ function setup() {
   tileW = label.width / TILES_X;
   tileH = label.height / TILES_Y;
 
-  // shape.resize(CANVAS_W, CANVAS_H);
+  shape.resize(CANVAS_W, CANVAS_H);
 
   document.getElementById("exportPdfBtn")?.addEventListener("click", exportPDF);
 }
@@ -83,6 +87,9 @@ function setup() {
 function draw() {
   clear();
 
+  let buffer = label.get();
+  buffer.resize(CANVAS_W, CANVAS_H);
+  buffer.mask(shape);
 
   // ---------- ASCII MODUL ----------
   const nameInput = document.getElementById("nazovPiva");
@@ -109,7 +116,7 @@ function draw() {
   let typeAvg = beerTypeAscii.reduce((a, b) => a + b, 0) / beerTypeAscii.length; // priemer hodnot vsetkych 
 
   noiseSeed(nameAvg * 999);
-  SPLIT_COUNT = constrain(beerType.length, 2, 8);
+  SPLIT_COUNT = constrain(beerType.length, 2, 20);
   randomSeed(typeAvg);
 
 
@@ -117,9 +124,10 @@ function draw() {
   let baseHue = hueSliderA.value;
   let compHue = hueSliderB.value;
 
-  COLOR_A = color(baseHue, 100, 66);
-  COLOR_B = color(compHue, 100, 6);
+  COLOR_A = color(baseHue, 100, 80);
+  COLOR_B = color(compHue, 100, 10);
   COLOR_C = color("#E0D9CA"); // OFF WHITE cream
+
 
   // ---------- SETTINGS ----------
   tileMargin = 1.00;
@@ -164,28 +172,36 @@ function draw() {
       let px = x * tileW;
       let py = y * tileH;
 
-      let splitTile = random() < 0.25;
+      let splitTile = random() < 0.3;
       if (splitTile) {
 
         let subTileW = tileW / SPLIT_COUNT;
+        let subTileH = tileH / SPLIT_COUNT;
 
         for (let i = 0; i < SPLIT_COUNT; i++) {
 
           let t = sin((n * typeAvg + i * 3.21) * TWO_PI);
           let sSplit = constrain(s + t * 0.12, 0.2, 1.2);
+           splitCol = lerpColor(COLOR_A, COLOR_B, sSplit);
 
-          label.fill(lerpColor(COLOR_A, COLOR_B, sSplit));
+          label.fill(splitCol);
 
-          label.rect(
+          /* label.rect(
             px + i * subTileW - tileW / 2 + subTileW / 2,
             py,
             subTileW + 1,
             tileH + 1
+          ); */
+          label.rect(
+            px,
+            py + i * subTileH - tileH / 2 + subTileH / 2,
+            tileW + 1,
+            subTileH + 1
           );
         }
 
       } else {
-        label.fill(mixHue);
+        label.fill(splitCol);
         label.rect(px, py, tileW + 1, tileH + 1);
       }
     }
@@ -197,18 +213,9 @@ function draw() {
   label.tint(COLOR_C);
   label.imageMode(CENTER);
   label.translate(label.width / 2, 180);
-
-  label.drawingContext.imageSmoothingEnabled = true;
-label.drawingContext.imageSmoothingQuality = 'high';
-  
-const LOGO_W = 190;                
-const LOGO_H = LOGO_W * (logo.height / logo.width);
-
-label.image(logo, 0, 0, LOGO_W, LOGO_H);
-  
+  label.scale(0.49);
+  label.image(logo, 0, 16); // 2x upscaled logo
   label.pop();
-
-  
 
   // NÁZOV PIVA
   label.push();
@@ -285,18 +292,13 @@ label.image(logo, 0, 0, LOGO_W, LOGO_H);
   label.rect(0, 0, 400, 330);
   label.pop();
 
-let buffer = label.get();
-buffer.mask(shape);
-
-push();
-imageMode(CENTER);
-
-drawingContext.imageSmoothingEnabled = true;
-drawingContext.imageSmoothingQuality = 'high';
-
-//scale(0.8);  
-image(buffer, width / 2, height / 2);
-pop();
+  // DESIGN PREVIEW
+  push();
+  imageMode(CENTER);
+  translate(CANVAS_W / 2, CANVAS_H / 2);
+  scale(0.80);
+  image(buffer, 0, 0);
+  pop();
 }
 
 function exportPDF() {

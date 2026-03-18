@@ -75,7 +75,7 @@ body {
   position: fixed;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%) scale(0.3);
+  transform: translate(-50%, -50%) scale(0.25);
   transform-origin: center center;
   display: block;
 }
@@ -86,7 +86,7 @@ body {
 
 @media (min-height: 500px) {
   #sketch-wrapper {
-  transform: translate(-50%, -50%) scale(0.5);
+  transform: translate(-50%, -50%) scale(0.4);
   }
 }
 

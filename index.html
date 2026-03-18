@@ -3,12 +3,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Dark Pipe Label Master 0,5 l</title>
+  <title>Dark Pipe Label Master</title>
   <link rel="stylesheet" href="style.css">
-
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap');
-  </style>
 </head>
 
 <body>
@@ -27,28 +23,26 @@
   </div>
 
   <div id="appInfo" class="appVer">
-    v.01
+    v.02
   </div>
 
   <div class="inputGroup">
     <textArea rows="1" type="text" id="nazovPiva" placeholder="Názov piva"></textArea>
-    <br><br>
 
     <textArea rows="1" type="text" id="typPiva" placeholder="Typ piva"></textArea>
-    <br><br>
-
+    
     <textArea rows="1" type="text" id="percento" placeholder="5.0 %"></textArea>
   </div>
 
   <div class="sliderGroup">
     <label>Color A</label>
-    <input type="range" id="hueSliderA" class="sliders" max="360" value="0" step="10" style="--h:0"
+    <input type="range" id="hueSliderA" class="sliders" max="360" value="0" 
       oninput="this.style.setProperty('--h', this.value)">
     <br>
     <br>
 
     <label>Color B</label>
-    <input type="range" id="hueSliderB" class="sliders" min="0" max="360" value="0" step="10" style="--h:0"
+    <input type="range" id="hueSliderB" class="sliders" min="0" max="360" value="0"
       oninput="this.style.setProperty('--h', this.value)">
 
     <br>

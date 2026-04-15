@@ -15,7 +15,7 @@
   --ui-border: 1px;
 
   --thumb-size: 18px;
-  --thumb-radius: 24px;
+  --thumb-radius: 5px;
   --thumb-border: 2px;
 
   --ui-margin: 50px;
@@ -202,7 +202,7 @@ label {
   margin-top: 15px;
   width: 100%;
   height: 30px;
-  border-radius: var(--thumb-radius);
+  border-radius: 24px;
   border: none;
   background: #444444;
   color: #000000;

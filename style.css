@@ -97,7 +97,7 @@ textarea {
   color: var(--ui-color);
   height: 30px;
   border: var(--ui-border) solid var(--ui-color);
-  border-radius: var(--thumb-radius);
+  border-radius: 24px;
   padding-left: 15px;
   padding-top: 6px;
   margin-top: 15px;

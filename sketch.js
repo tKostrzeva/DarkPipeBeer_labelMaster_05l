@@ -109,7 +109,7 @@ function draw() {
 
   noiseSeed(nameAvg * 999);
   SPLIT_COUNT = constrain(beerType.length, 2, 20);
-  randomSeed(typeAvg);
+  randomSeed(nameAvg);
 
 
   // ---------- COLOR MODUL ----------
